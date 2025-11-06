@@ -3,7 +3,7 @@ const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const startButton = document.getElementById("start-btn");
 const questionText = document.getElementById("question-text");
-const currentQuestionsSpan = document.getElementById("current-questions");
+const currentQuestionsSpan = document.getElementById("current-question");
 const scoreSpan = document.getElementById("score");
 const answersContainer = document.getElementById("answers-container");
 const progressBar = document.getElementById("progress");
@@ -18,47 +18,51 @@ const totalQuestionsSpan = document.getElementById("total-questions");
 
 const quizQuestions = [
     {
-        Question: "What is the capital of France?",
+        question: "What is the capital of France?",
         answers: [
             { text: "London", correct: false },
             { text: "Berlin", correct: false },
             { text: "Paris", correct: true },
             { text: "Madrid", correct: false }
-        ],
-
-        Question: "Which planet is known as the red planet?",
+        ]
+    },
+    {
+        question: "Which planet is known as the red planet?",
         answers: [
             { text: "Venus", correct: false },
             { text: "Mars", correct: true },
             { text: "Jupiter", correct: false },
             { text: "Saturn", correct: false }
-        ],
-
-        Question: "What is the largest ocean on earth?",
+        ]
+    },
+    {
+        question: "What is the largest ocean on earth?",
         answers: [
             { text: "Atlantic Ocean", correct: false },
             { text: "Indian Ocean", correct: false },
-            { text: "Artic Ocean", correct: false },
+            { text: "Arctic Ocean", correct: false },
             { text: "Pacific Ocean", correct: true }
-        ],
-
-        Question: "Where is the Mount Everest found?",
+        ]
+    },
+    {
+        question: "Where is Mount Everest found?",
         answers: [
-            { text: "the Himalayas", correct: true },
-            { text: "the Ganges", correct: false },
-            { text: "the Andes", correct: false },
+            { text: "The Himalayas", correct: true },
+            { text: "The Ganges", correct: false },
+            { text: "The Andes", correct: false },
             { text: "Mariana Trench", correct: false }
-        ],
-
-        Question: "Who was the first man to land in the moon?",
+        ]
+    },
+    {
+        question: "Who was the first man to land on the moon?",
         answers: [
-            { text: "Mahatma Ghandi", correct: false },
+            { text: "Mahatma Gandhi", correct: false },
             { text: "Neil Armstrong", correct: true },
-            { text: "Benito Mussolini", correct: true },
-            { text: "Karl Max", correct: false }
-        ],
+            { text: "Benito Mussolini", correct: false },
+            { text: "Karl Marx", correct: false }
+        ]
     }
-]
+];
 
 
 let currentQuestionIndex = 0;
@@ -77,11 +81,12 @@ function startQuiz () {
     score = 0;
     scoreSpan.textContent = 0;
 
-    startScreen.classList.remove["active"];
-    quizScreen.classList.add["active"];
+    startScreen.classList.remove("active");
+    quizScreen.classList.add("active");
 
     showQuestion ()
 }
+
 
 function showQuestion () {
     answersDisabled = false;
@@ -90,10 +95,10 @@ function showQuestion () {
 
     currentQuestionsSpan.textContent = currentQuestionIndex + 1;
 
-    const progressPercent = [currentQuestionIndex/quizQuestions.length] * 100;
-    progressBar.style.width = progressPercent + "%"
+    const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
+    progressBar.style.width = progressPercent + "%";
 
-    questionText.textContent = currentQuestion.question
+    questionText.textContent = currentQuestion.question;
 
     answersContainer.innerHTML = "";
 
@@ -108,6 +113,7 @@ function showQuestion () {
         answersContainer.appendChild(button);
     })
 }
+
 
 function selectAnswer (event) {
     if (answersDisabled) return
@@ -137,6 +143,7 @@ function selectAnswer (event) {
         }
     },1000)
 }
+
 
 function showResults () {
     quizScreen.classList.remove("active")
