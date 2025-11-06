@@ -97,6 +97,11 @@ function showQuestion () {
 
     const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
     progressBar.style.width = progressPercent + "%";
+    // restart bump animation so it runs on each update
+    progressBar.classList.remove('bump');
+    // force reflow to allow re-adding the class to retrigger the animation
+    void progressBar.offsetWidth;
+    progressBar.classList.add('bump');
 
     questionText.textContent = currentQuestion.question;
 
@@ -154,15 +159,15 @@ function showResults () {
     const percentage = (score/quizQuestions.length) * 100
 
     if(percentage === 100){
-        resultMessage.textContent = "Perfect!, You are a genius!";
+        resultMessage.textContent = "Perfect! You are a genius!";
     } else if(percentage >= 80){
-         resultMessage.textContent = "Great Job!, You know your stuff!";
+         resultMessage.textContent = "Great Job! You know your stuff!";
     } else if(percentage >= 60){
-         resultMessage.textContent = "Good effort!, Keep learning!";
+         resultMessage.textContent = "Good effort! Keep learning!";
     } else if(percentage >= 40){
-         resultMessage.textContent = "Not bad!, Try again to improve!";
+         resultMessage.textContent = "Not bad! Try again to improve!";
     } else {
-         resultMessage.textContent = "Keep studying!, You will get better!";
+         resultMessage.textContent = "Keep studying! You will get better!";
     }
 
 }

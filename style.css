@@ -124,9 +124,20 @@ body {
     height: 10px;
     background-color: #e86a33;
     width: 0%;
-    transition: width 0.3s ease;
+    transition: width 0.45s cubic-bezier(.2,.8,.2,1);
+    transform-origin: left center;
 }
 
+/* small bump animation when progress changes */
+.progress.bump {
+    animation: progress-bump 360ms ease;
+}
+
+@keyframes progress-bump {
+    0% { transform: scaleY(1); box-shadow: none; }
+    50% { transform: scaleY(1.18); box-shadow: 0 0 10px rgba(232,106,51,0.35); }
+    100% { transform: scaleY(1); box-shadow: none; }
+}
 /* RESULT SCREEN */
 #result-screen {
     color: #e86a33;
